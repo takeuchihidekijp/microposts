@@ -1,4 +1,4 @@
-<h1>Sign up</h1>
+<h1>Edit</h1>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -10,6 +10,9 @@
 
             <%= f.label :email %>
             <%= f.email_field :email, class: 'form-control' %>
+      
+            <%= f.label :about %>
+            <%= f.text_field :about, class: 'form-control' %>
 
             <%= f.label :password %>
             <%= f.password_field :password, class: 'form-control' %>
@@ -17,7 +20,7 @@
             <%= f.label :password_confirmation, "Confirmation" %>
             <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-            <%= f.submit "Create my account", class: "btn btn-primary" %>
+            <%= f.submit "Save Chagen Account", class: "btn btn-primary" %>
         <% end %>
     </div>
 </div>
