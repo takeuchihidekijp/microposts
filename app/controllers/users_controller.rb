@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
-  
+  def show
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.order(created_at: :desc)
+  end
   before_action :authenticate_user, only: [:edit , :update]
   
   def new
     @user = User.new
-  end
-  
-  def show
-    @user = User.find(params[:id])
   end
   
   def create
@@ -40,10 +39,8 @@ class UsersController < ApplicationController
   
     def authenticate_user
       @user = User.find(params[:id])
-      if @user == current_user
-        else
-      redirect_to root_path
+      unless @user == current_user
+        redirect_to root_path
       end
     end
-  
 end
