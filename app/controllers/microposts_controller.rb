@@ -4,7 +4,14 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = "Micropost created!"
+
+      require 'nokogiri'
+      require 'open-uri'
+          # スクレイピング先のURL
+      doc = Nokogiri::HTML(open('http://weather.asahi.com'))
+      @objects = doc.xpath('//td/img/@alt')
+      
+      flash[:success] = "Micropost created! ちなみに今日の東京の天気は　" + @objects[6]
       redirect_to root_url
     else
       @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
